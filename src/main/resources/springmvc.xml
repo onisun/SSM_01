@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!--自动扫描包-->
+    <context:component-scan base-package="com.onisun.ssmdemo1" use-default-filters="false">
+        <!--指定只扫描哪些组件，默认情况下是全部扫描的，
+        所以此时要配置的话需要在component-scan标签中添加 use-default-filters="false"-->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+
+    </context:component-scan>
+<!--    视图处理器-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/page/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+<!--    静态资源扫描-->
+    <mvc:default-servlet-handler/>
+<!--    动态资源扫描-->
+    <mvc:annotation-driven/>
+
+
+</beans>
